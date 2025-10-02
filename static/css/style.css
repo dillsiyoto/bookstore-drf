@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #ECDFCC; /* основной фон */
+    color: #333;
+}
+
+header, footer {
+    background: #A5B68D; /* приятный зелёно-оливковый */
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+a {
+    color: #DA8359; /* акцентный оранжево-коричневый */
+    text-decoration: none;
+}
+
+.auth-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #FCFAEE; /* светлый блок для форм */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.auth-container h2 {
+    margin-bottom: 1rem;
+    color: #DA8359; /* заголовок в акцентном цвете */
+}
+
+.auth-container input {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: white;
+}
+
+.auth-container button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #DA8359; /* кнопка акцентная */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.auth-container button:hover {
+    background: #A5B68D; /* при наведении — зелёный */
+}
