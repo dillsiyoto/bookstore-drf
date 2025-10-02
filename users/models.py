@@ -9,10 +9,14 @@ class User(AbstractUser):
         null=True, 
         verbose_name="Номер телефона"
     )
-    address = models.TextField(
+    address = models.CharField(
         blank=True, 
         null=True, 
         verbose_name="Адрес доставки"
+    )
+    is_active = models.BooleanField(
+        default=False,
+        verbose_name="активированный аккаунт",
     )
 
     class Meta:
