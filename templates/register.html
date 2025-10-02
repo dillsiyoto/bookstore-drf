@@ -6,7 +6,7 @@
 {% block content %}
 <div class="auth-container">
     <h2>Регистрация</h2>
-    <form id="registerForm">
+    <form id="registerForm" data-login-url="{% url 'login-page' %}">
         <input type="text" id="username" placeholder="Имя пользователя" required>
         <input type="email" id="email" placeholder="Email" required>
         <input type="password" id="password" placeholder="Пароль" required>
