@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}BookStore{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
 </head>
 <body>
     <header>
         <nav>
-            <a href="{% url 'catalog' %}">Каталог</a>
-            <a href="{% url 'login-page' %}">Вход</a>
-            <a href="{% url 'register-page' %}">Регистрация</a>
+            <a href="{% url "catalog" %}">Каталог</a>
+            <a href="{% url "login-page" %}">Вход</a>
+            <a href="{% url "register-page" %}">Регистрация</a>
         </nav>
     </header>
 

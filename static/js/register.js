@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("registerForm");
-    const loginUrl = form.dataset.loginUrl; // читаем data-login-url
+    const loginUrl = form.dataset.loginUrl; 
 
     form.addEventListener("submit", async function(e) {
         e.preventDefault();
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (response.ok) {
                 alert("Регистрация прошла успешно! Теперь войдите.");
-                window.location.href = loginUrl; // теперь редирект работает
+                window.location.href = loginUrl; 
             } else {
                 const error = await response.json();
                 alert("Ошибка: " + JSON.stringify(error));

@@ -1,27 +1,32 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background: #ECDFCC; /* основной фон */
+    background: #ECDFCC; /* общий фон */
     color: #333;
 }
 
 header, footer {
-    background: #A5B68D; /* приятный зелёно-оливковый */
+    background: #A5B68D; /* зелёно-оливковый */
     color: white;
     padding: 1rem;
     text-align: center;
 }
 
 a {
-    color: #DA8359; /* акцентный оранжево-коричневый */
+    color: #DA8359; /* акцент */
     text-decoration: none;
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
+/* Блоки авторизации */
 .auth-container {
     max-width: 400px;
     margin: 2rem auto;
     padding: 2rem;
-    background: #FCFAEE; /* светлый блок для форм */
+    background: #FCFAEE; /* светлый фон блока */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
@@ -29,7 +34,7 @@ a {
 
 .auth-container h2 {
     margin-bottom: 1rem;
-    color: #DA8359; /* заголовок в акцентном цвете */
+    color: #DA8359; /* акцентный заголовок */
 }
 
 .auth-container input {
@@ -37,7 +42,7 @@ a {
     width: 100%;
     padding: 0.8rem;
     margin: 0.5rem 0;
-    border: 1px solid #ccc;
+    border: 1px solid #A5B68D; /* зелёный бордер */
     border-radius: 5px;
     background: white;
 }
@@ -45,14 +50,188 @@ a {
 .auth-container button {
     width: 100%;
     padding: 0.8rem;
-    background: #DA8359; /* кнопка акцентная */
+    background: #DA8359; /* акцентная кнопка */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    transition: background 0.3s;
 }
 
 .auth-container button:hover {
-    background: #A5B68D; /* при наведении — зелёный */
+    background: #A5B68D; /* оливковый при наведении */
+}
+
+/* Каталог */
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.book-card {
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    background: #FCFAEE; /* карточка на светлом фоне */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.book-card img {
+    max-width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.book-card h3 {
+    font-size: 18px;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+.price {
+    font-weight: bold;
+    color: #DA8359; /* акцентная цена */
+    font-size: 18px;
+}
+
+/* Детальная страница */
+.book-detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 900px;
+    background: #FCFAEE;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.book-detail img {
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+.book-detail .info {
+    max-width: 550px;
+}
+
+.book-detail .info h2 {
+    margin-bottom: 10px;
+    color: #DA8359;
+}
+
+.book-detail button {
+    padding: 10px 20px;
+    background: #DA8359;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.book-detail button:hover {
+    background: #A5B68D;
+}
+
+
+.catalog-page {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.filters {
+    background: #FCFAEE;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.filters h3 {
+    color: #DA8359;
+    margin-bottom: 10px;
+}
+
+.filters label {
+    display: block;
+    margin: 10px 0;
+}
+
+.filters select,
+.filters input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #A5B68D;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.filters button {
+    width: 100%;
+    padding: 10px;
+    background: #DA8359;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.filters button:hover {
+    background: #A5B68D;
+}
+
+.admin-panel {
+    background: #FCFAEE;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.admin-panel h3 {
+    color: #DA8359;
+    margin-bottom: 10px;
+}
+
+.admin-panel form {
+    margin-bottom: 20px;
+}
+
+.admin-panel input,
+.admin-panel textarea,
+.admin-panel select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #A5B68D;
+    border-radius: 5px;
+}
+
+.admin-panel button {
+    background: #DA8359;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.admin-panel button:hover {
+    background: #A5B68D;
 }
