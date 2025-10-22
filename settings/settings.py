@@ -8,6 +8,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 KEYS_PATH = os.path.join(BASE_DIR, "keys")
 SECRET_KEY = config("SECRET_KEY")
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -17,6 +20,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "django_filters",
     "drf_yasg",
+    "rest_framework_simplejwt.token_blacklist",
     "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -89,6 +93,8 @@ AUTH_PASSWORD_VALIDATORS = [
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": True,
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
@@ -102,7 +108,7 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication"
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 10
+    "PAGE_SIZE": 100
 }
 
 SWAGGER_SETTINGS = {

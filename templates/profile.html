@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+    <h2>Личный кабинет</h2>
+
+    <div id="profile-info" class="profile-info">
+        <p><strong>Имя пользователя:</strong> <span id="profile-username"></span></p>
+        <p><strong>Email:</strong> <span id="profile-email"></span></p>
+        <p><strong>Статус:</strong> <span id="profile-role"></span></p>
+    </div>
+
+    <h3>Редактировать профиль</h3>
+    <form id="profile-form">
+        <label>Имя пользователя:</label>
+        <input type="text" id="edit-username">
+
+        <label>Email:</label>
+        <input type="email" id="edit-email">
+
+        <button type="submit">Сохранить изменения</button>
+    </form>
+
+    <div id="profile-message" class="message"></div>
+</div>
+
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

@@ -4,30 +4,38 @@
 {% block title %}Каталог книг{% endblock %}
 
 {% block content %}
-<div class="page-container">
+<div class="catalog-page">  <!-- общий контейнер -->
 
-    <!-- Фильтры -->
+    <!-- Левая панель фильтров -->
     <aside class="filters">
         <form id="filters-form">
-            <label>Категория:</label>
+            <h3>Фильтры</h3>
+
+            <label for="category-filter">Категория:</label>
             <select id="category-filter">
                 <option value="">Все</option>
             </select>
 
-            <label>Цена до:</label>
+            <label for="price-filter">Цена до:</label>
             <input type="number" id="price-filter" placeholder="Например, 5000">
+
+            <label for="search-filter">Поиск (название или автор):</label>
+            <input type="text" id="search-filter" placeholder="Введите название или автора">
 
             <button type="submit">Применить</button>
         </form>
     </aside>
 
-    <!-- Сетка каталога -->
-    <section class="catalog" id="book-list"></section>
+
+    <!-- Правая часть — сетка книг -->
+    <section class="catalog" id="book-list">
+        <!-- сюда через JS вставляются карточки книг -->
+    </section>
 
 </div>
 
-{% if user.is_staff %}
-<div class="admin-panel">
+<!-- Админ-панель -->
+<div class="admin-panel hidden">
     <h3>Добавить категорию</h3>
     <form id="add-category-form">
         <input type="text" id="new-category" placeholder="Название категории" required>
@@ -36,16 +44,16 @@
 
     <h3>Добавить книгу</h3>
     <form id="add-book-form">
-        <input type="text" id="book-title" placeholder="Название" required>
-        <input type="text" id="book-author" placeholder="Автор" required>
-        <textarea id="book-description" placeholder="Описание"></textarea>
-        <input type="number" id="book-price" placeholder="Цена" required>
-        <select id="book-category"></select>
-        <input type="file" id="book-cover">
+        <input type="text" id="book-title" name="title" placeholder="Название" required>
+        <input type="text" id="book-author" name="author" placeholder="Автор" required>
+        <textarea id="book-description" name="description" placeholder="Описание"></textarea>
+        <input type="number" id="book-price" name="price" placeholder="Цена" required>
+        <select id="book-category" name="category_id"></select>
+        <input type="file" id="book-cover" name="cover_image">
         <button type="submit">Добавить</button>
     </form>
+
 </div>
-{% endif %}
 
 <script src="{% static 'js/catalog.js' %}"></script>
 {% endblock %}

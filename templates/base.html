@@ -4,16 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}BookStore{% endblock %}</title>
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <header>
         <nav>
-            <a href="{% url "catalog" %}">Каталог</a>
-            <a href="{% url "login-page" %}">Вход</a>
-            <a href="{% url "register-page" %}">Регистрация</a>
+            <a href="/">Каталог</a>
+            <a href="/profile/" id="profile-link" style="display: none;">Профиль</a>
+            <a href="/favorites/" id="favorites-link" style="display:none;">Избранное</a>
+            <a href="/login/" id="login-link">Вход</a>
+            <a href="/register/" id="register-link">Регистрация</a>
+            <a href="#" id="logout-link" style="display: none;">Выйти</a>
         </nav>
     </header>
+
+
 
     <main>
         {% block content %}{% endblock %}
@@ -22,5 +27,7 @@
     <footer>
         <p>© 2025 BookStore</p>
     </footer>
+
+    <script src="{% static 'js/auth.js' %}"></script>
 </body>
 </html>

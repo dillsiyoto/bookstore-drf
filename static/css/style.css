@@ -197,41 +197,389 @@ a:hover {
     background: #A5B68D;
 }
 
-.admin-panel {
+.book-detail-page main {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.book-detail-container {
+  max-width: 90vw; /* 90% ширины окна */
+  margin: 0 auto;
+  padding: 30px 40px;
+}
+
+.book-detail-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.book-detail-card img {
+  width: 280px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain; /* картинка полностью помещается */
+  flex-shrink: 0;
+  background: #f7f7f7; /* чтобы не было пустоты вокруг, если пропорции разные */
+  padding: 5px; /* чуть воздуха */
+}
+
+
+.book-detail-card .info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.book-detail-card h1 {
+  margin-top: 0;
+  font-size: 2em;
+  color: #222;
+}
+
+.book-detail-card h3 {
+  color: #666;
+  margin-top: 0.3em;
+  font-weight: 400;
+}
+
+.book-detail-card p {
+  margin: 0.6em 0;
+  line-height: 1.6;
+  color: #333;
+}
+
+.book-detail-card .price {
+  margin-top: 15px;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #007b5e;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 30px;
+  text-decoration: none;
+  color: #007b5e;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #005c46;
+}
+
+.hidden {
+    display: none;
+}
+.visible {
+    display: block;
+}
+
+/* Контейнер страницы каталога */
+.catalog-page {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 30px;
+}
+
+/* Левая панель фильтров */
+.filters {
+    width: 260px;
     background: #FCFAEE;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 20px;
+    height: fit-content;
 }
 
-.admin-panel h3 {
+.filters h3 {
     color: #DA8359;
-    margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 15px;
 }
 
-.admin-panel form {
-    margin-bottom: 20px;
+.filters label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
-.admin-panel input,
-.admin-panel textarea,
-.admin-panel select {
+.filters select,
+.filters input {
     width: 100%;
-    padding: 8px;
-    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #A5B68D;
+    border-radius: 6px;
+    margin-top: 6px;
+    font-size: 14px;
+    background: white;
+}
+
+.filters button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #DA8359;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.filters button:hover {
+    background: #A5B68D;
+}
+
+/* Каталог книг справа */
+/* Контейнер с книгами */
+.catalog {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+/* Карточка книги */
+.book-card {
+    background: #FCFAEE;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Изображение фиксированной высоты */
+.book-card .cover {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-card .cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    padding: 5px;
+    background: #f7f7f7;
+}
+
+
+/* Текстовая часть */
+.book-card h3 {
+    font-size: 17px;
+    margin: 10px 0 5px;
+    color: #333;
+    line-height: 1.3;
+}
+
+.book-card p {
+    margin: 4px 0;
+    color: #555;
+}
+
+.book-card .price {
+    font-size: 18px;
+    color: #A5B68D;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+/* ================= Profile Page (как авторизация) ================= */
+.profile-page {
+    max-width: 400px;
+    margin: 5rem auto; /* по центру по вертикали и горизонтали */
+    padding: 2rem;
+    background: #FCFAEE; /* светлый фон блока */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.profile-page h2 {
+    margin-bottom: 1.5rem;
+    color: #DA8359; /* акцентный заголовок */
+}
+
+.profile-info {
+    text-align: left;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #FFF8E5;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.profile-info p {
+    margin: 0.5rem 0;
+    font-size: 15px;
+}
+
+.profile-info strong {
+    color: #A5B68D; /* зеленый акцент */
+}
+
+.profile-page h3 {
+    margin-bottom: 1rem;
+    color: #DA8359;
+}
+
+#profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+#profile-form label {
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #333;
+}
+
+#profile-form input {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
     border: 1px solid #A5B68D;
     border-radius: 5px;
+    background: white;
+    box-sizing: border-box;
 }
 
-.admin-panel button {
+#profile-form button {
+    width: 100%;
+    padding: 0.8rem;
     background: #DA8359;
     color: white;
     border: none;
-    padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
 }
-.admin-panel button:hover {
+
+#profile-form button:hover {
     background: #A5B68D;
+}
+
+#profile-message {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #007b5e;
+    font-weight: 500;
+}
+
+.message {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.admin-panel {
+    width: 600px;
+    max-width: 90%;
+    margin: 0 auto; /* по центру */
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    
+    flex: 0 0 auto; /* чтобы flex не растягивал элемент */
+}
+
+
+
+.admin-panel h3 {
+    margin-top: 0;
+}
+
+.admin-panel form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* расстояние между полями */
+}
+
+.admin-panel input,
+.admin-panel select,
+.admin-panel textarea,
+.admin-panel button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.admin-panel button {
+    background-color: #A5B68D;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.admin-panel button:hover {
+    background-color: #A5B68D;
+}
+
+.delete-book-btn {
+    font-weight: bold;
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.delete-book-btn:hover {
+    background-color: #A5B68D;
+}
+
+.favorite-btn {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    transition: transform 0.15s ease, color 0.15s;
+    color: #bbb;
+    padding: 6px;
+}
+.favorite-btn:hover { transform: scale(1.15); }
+.favorite-btn.active { color: #e74c3c; transform: scale(1.1); }
+
+/* если у тебя есть delete-book-btn, стилизуй отдельно */
+.delete-book-btn {
+    background: red;
+    color: white;
+    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

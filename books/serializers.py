@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from books.models import Book, Category
+from books.models import Book, Category, Favorite
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -29,3 +29,15 @@ class BookSerializer(serializers.ModelSerializer):
             "cover_image",
             "created_at",
         ]
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    book = BookSerializer(read_only=True)
+    book_id = serializers.PrimaryKeyRelatedField(
+        queryset=Book.objects.all(), 
+        source="book", 
+        write_only=True
+    )
+
+    class Meta:
+        model = Favorite
+        fields = ["id", "book", "book_id", "created_at"]

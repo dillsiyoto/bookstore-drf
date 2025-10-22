@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Избранное{% endblock %}
+
+{% block content %}
+<div class="favorites-container">
+    <h2>Ваши избранные книги</h2>
+    <section id="favorites-list"></section>
+</div>
+
+<script src="{% static 'js/favorites.js' %}"></script>
+{% endblock %}

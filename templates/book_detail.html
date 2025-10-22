@@ -1,9 +1,20 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Книга{% endblock %}
+{% block title %}Описание книги{% endblock %}
 
 {% block content %}
-<div id="book-detail"></div>
+<div class="book-detail-container">
+
+    <!-- 🔼 Ссылка наверх -->
+    <a href="/" class="back-link">← Вернуться в каталог</a>
+
+    <!-- Карточка книги -->
+    <div id="book-detail" class="book-detail">
+        <p>Загрузка данных...</p>
+    </div>
+
+</div>
 
 <script src="{% static 'js/book_detail.js' %}"></script>
 {% endblock %}
