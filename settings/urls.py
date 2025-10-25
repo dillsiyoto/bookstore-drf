@@ -16,4 +16,5 @@ urlpatterns = [
     path("register/", TemplateView.as_view(template_name="register.html"), name="register-page"),
     path("profile/", TemplateView.as_view(template_name="profile.html"), name="profile"),
     path("favorites/", TemplateView.as_view(template_name="favorites.html"), name="favorites"),
+    path("cart/", TemplateView.as_view(template_name="cart.html"), name="cart"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

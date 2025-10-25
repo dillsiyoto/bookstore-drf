@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const logoutLink = document.getElementById("logout-link");
     const profileLink = document.getElementById("profile-link");
     const favoritesLink = document.getElementById("favorites-link");
+    const cartLink = document.getElementById("cart-link");
 
     // -----------------------------
     // 🔹 Проверка токенов
@@ -42,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (logoutLink) logoutLink.style.display = "inline";
             if (profileLink) profileLink.style.display = "inline";
             if (favoritesLink) favoritesLink.style.display = "inline";
-
+            if (cartLink) cartLink.style.display = "inline";
             if (isAdmin()) adminPanel?.classList.remove("hidden");
             else adminPanel?.classList.add("hidden");
         } else {
@@ -51,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (logoutLink) logoutLink.style.display = "none";
             if (profileLink) profileLink.style.display = "none";
             if (favoritesLink) favoritesLink.style.display = "none"; 
+            if (cartLink) cartLink.style.display = "none";
             adminPanel?.classList.add("hidden");
         }
     }

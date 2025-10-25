@@ -28,14 +28,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             </div>
         `;
 
+        // ❤️ Логика избранного
         if (isAuthenticated) {
             const favBtn = document.getElementById("fav-btn");
             const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-            const isFavorite = favorites.includes(book.id);
 
             updateButtonState();
 
-            favBtn.addEventListener("click", async () => {
+            favBtn.addEventListener("click", () => {
                 toggleFavorite(book.id);
                 updateButtonState();
             });
@@ -56,6 +56,26 @@ document.addEventListener("DOMContentLoaded", async () => {
                 favBtn.textContent = isFav ? "❤️ В избранном" : "🤍 В избранное";
                 favBtn.classList.toggle("active", isFav);
             }
+
+            // 🛒 Логика корзины
+            const cartBtn = document.createElement("button");
+            cartBtn.id = "cart-btn";
+            cartBtn.className = "cart-btn";
+
+            const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+            const inCart = cart.some(i => i.id === book.id);
+            cartBtn.textContent = inCart ? "✅ В корзине" : "🛒 В корзину";
+
+            cartBtn.addEventListener("click", () => {
+                let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+                if (!cart.some(i => i.id === book.id)) {
+                    cart.push(book);
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    cartBtn.textContent = "✅ В корзине";
+                }
+            });
+
+            document.querySelector(".info").appendChild(cartBtn);
         }
 
     } catch (err) {
@@ -63,3 +83,4 @@ document.addEventListener("DOMContentLoaded", async () => {
         container.innerHTML = `<p class="error">Ошибка загрузки данных. Попробуйте позже.</p>`;
     }
 });
+

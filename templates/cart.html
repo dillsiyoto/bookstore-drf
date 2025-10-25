@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<div class="favorites-container">
+    <h2>Ваша корзина</h2>
+    <div id="cart-list"></div>
+    <div id="cart-total" class="cart-total"></div>
+</div>
+
+
+<script src="{% static 'js/cart.js' %}"></script>
+{% endblock %}

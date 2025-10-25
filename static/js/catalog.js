@@ -65,35 +65,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // -----------------------------
     // Загрузка категорий
     // -----------------------------
-    async function loadCategories() {
-        try {
-            const data = await apiFetch("/api/categories/");
-            const categories = extractResults(data);
-
-            if (categoryFilter) {
-                categoryFilter.innerHTML = '<option value="">Все</option>';
-                categories.forEach(cat => {
-                    const opt = document.createElement("option");
-                    opt.value = cat.id;
-                    opt.textContent = cat.name;
-                    categoryFilter.appendChild(opt);
-                });
-            }
-
-            if (bookCategorySelect) {
-                bookCategorySelect.innerHTML = '<option value="">Выберите категорию</option>';
-                categories.forEach(cat => {
-                    const opt = document.createElement("option");
-                    opt.value = cat.id;
-                    opt.textContent = cat.name;
-                    bookCategorySelect.appendChild(opt);
-                });
-            }
-        } catch (err) {
-            console.error("Ошибка при загрузке категорий:", err);
-        }
-    }
-
     // -----------------------------
     // Загрузка книг
     // -----------------------------
@@ -130,20 +101,19 @@ document.addEventListener("DOMContentLoaded", async () => {
                     window.location.href = `/book/${book.id}/`;
                 });
 
-                // ------------------- Кнопка избранного (сердечко) -------------------
                 if (loggedIn) {
-                    // делаем контейнер относительным, чтобы абсолютная кнопка работала
-                    card.style.position = card.style.position || "relative";
+                    // делаем контейнер относительным
+                    card.style.position = "relative";
 
+                    // ❤️ Кнопка избранного
                     const favBtn = document.createElement("button");
                     favBtn.className = "favorite-btn";
                     favBtn.dataset.id = book.id;
-                    favBtn.type = "button"; // безопаснее
+                    favBtn.type = "button";
                     favBtn.textContent = favs.includes(book.id) ? "❤️" : "🤍";
 
                     favBtn.addEventListener("click", e => {
-                        e.stopPropagation(); // не переходить на detail
-                        // toggle локального избранного
+                        e.stopPropagation();
                         let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
                         if (favorites.includes(book.id)) {
                             favorites = favorites.filter(id => id !== book.id);
@@ -152,11 +122,30 @@ document.addEventListener("DOMContentLoaded", async () => {
                         }
                         localStorage.setItem("favorites", JSON.stringify(favorites));
                         favBtn.textContent = favorites.includes(book.id) ? "❤️" : "🤍";
-                        // обновим другие кнопки на странице (если нужно)
-                        updateFavoriteButtons?.();
                     });
 
                     card.appendChild(favBtn);
+
+                    // 🛒 Кнопка "в корзину"
+                    const cartBtn = document.createElement("button");
+                    cartBtn.className = "cart-btn";
+                    cartBtn.dataset.id = book.id;
+
+                    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+                    const inCart = cart.some(i => i.id === book.id);
+                    cartBtn.textContent = inCart ? "✅ В корзине" : "🛒 В корзину";
+
+                    cartBtn.addEventListener("click", e => {
+                        e.stopPropagation();
+                        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+                        if (!cart.some(i => i.id === book.id)) {
+                            cart.push(book);
+                            localStorage.setItem("cart", JSON.stringify(cart));
+                            cartBtn.textContent = "✅ В корзине";
+                        }
+                    });
+
+                    card.appendChild(cartBtn);
                 }
 
                 bookList.appendChild(card);
@@ -245,94 +234,120 @@ document.addEventListener("DOMContentLoaded", async () => {
     // -----------------------------
     // Инициализация
     // -----------------------------
-    await loadCategories();
-    await loadBooks();
-});
-
-// ===========================
-// 🔹 ИЗБРАННОЕ (сердечки)
-// ===========================
-
-function getFavorites() {
-    try { return JSON.parse(localStorage.getItem("favorites")) || []; }
-    catch { return []; }
-}
-function saveFavorites(favs) {
-    localStorage.setItem("favorites", JSON.stringify(favs));
-}
-function toggleFavorite(bookId) {
-    let favs = getFavorites();
-    if (favs.includes(bookId)) favs = favs.filter(id => id !== bookId);
-    else favs.push(bookId);
-    saveFavorites(favs);
-    updateFavoriteButtons();
-}
-function updateFavoriteButtons() {
-    const favs = getFavorites();
-    document.querySelectorAll(".favorite-btn").forEach(btn => {
-        const id = parseInt(btn.dataset.id);
-        btn.textContent = favs.includes(id) ? "❤️" : "🤍";
+        await loadCategories();
+        await loadBooks();
     });
-}
 
-// ===========================
-// 🔹 Рендер каталога с избранным
-// ===========================
+    // ===========================
+    // 🔹 ИЗБРАННОЕ (сердечки)
+    // ===========================
 
-async function renderBooks(books) {
-    const bookList = document.getElementById("book-list");
-    bookList.innerHTML = "";
+    function getFavorites() {
+        try { return JSON.parse(localStorage.getItem("favorites")) || []; }
+        catch { return []; }
+    }
+    function saveFavorites(favs) {
+        localStorage.setItem("favorites", JSON.stringify(favs));
+    }
+    function toggleFavorite(bookId) {
+        let favs = getFavorites();
+        if (favs.includes(bookId)) favs = favs.filter(id => id !== bookId);
+        else favs.push(bookId);
+        saveFavorites(favs);
+        updateFavoriteButtons();
+    }
+    function updateFavoriteButtons() {
+        const favs = getFavorites();
+        document.querySelectorAll(".favorite-btn").forEach(btn => {
+            const id = parseInt(btn.dataset.id);
+            btn.textContent = favs.includes(id) ? "❤️" : "🤍";
+        });
+    }
 
-    const loggedIn = !!localStorage.getItem("access");
-    const favs = getFavorites();
+    // ===========================
+    // 🔹 Рендер каталога с избранным
+    // ===========================
 
-    books.forEach(book => {
-        const card = document.createElement("div");
-        card.className = "book-card";
-        card.innerHTML = `
-            <img src="${book.cover_image || '/static/img/default-cover.png'}" alt="${book.title}">
-            <h3>${book.title}</h3>
-            <p>${book.author}</p>
-            <p class="price">${book.price} ₸</p>
-        `;
+    async function renderBooks(books) {
+        const bookList = document.getElementById("book-list");
+        bookList.innerHTML = "";
 
-        if (loggedIn) {
-            const favBtn = document.createElement("button");
-            favBtn.className = "favorite-btn";
-            favBtn.dataset.id = book.id;
-            favBtn.textContent = favs.includes(book.id) ? "❤️" : "🤍";
-            favBtn.addEventListener("click", e => {
-                e.stopPropagation();
-                toggleFavorite(book.id);
+        const loggedIn = !!localStorage.getItem("access");
+        const favs = getFavorites();
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+        books.forEach(book => {
+            const card = document.createElement("div");
+            card.className = "book-card";
+            card.innerHTML = `
+                <div class="cover">
+                    <img src="${book.cover_image || '/static/img/default-cover.png'}" alt="${book.title}">
+                </div>
+                <h3>${book.title}</h3>
+                <p><strong>Автор:</strong> ${book.author || 'Не указан'}</p>
+                <p class="price">${book.price ? book.price + " ₸" : ""}</p>
+            `;
+
+            if (loggedIn) {
+                // ❤️ избранное
+                const favBtn = document.createElement("button");
+                favBtn.className = "favorite-btn";
+                favBtn.dataset.id = book.id;
+                favBtn.textContent = favs.includes(book.id) ? "❤️" : "🤍";
+                favBtn.addEventListener("click", e => {
+                    e.stopPropagation();
+                    toggleFavorite(book.id);
+                    updateFavoriteButtons();
+                });
+                card.appendChild(favBtn);
+
+                // 🛒 корзина
+                const cartBtn = document.createElement("button");
+                cartBtn.className = "cart-btn";
+                cartBtn.dataset.id = book.id;
+
+                const inCart = cart.some(i => i.id === book.id);
+                cartBtn.textContent = inCart ? "✅ В корзине" : "🛒 В корзину";
+
+                cartBtn.addEventListener("click", e => {
+                    e.stopPropagation();
+                    let currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
+                    if (!currentCart.some(i => i.id === book.id)) {
+                        currentCart.push(book);
+                        localStorage.setItem("cart", JSON.stringify(currentCart));
+                        cartBtn.textContent = "✅ В корзине";
+                    }
+                });
+
+                card.appendChild(cartBtn);
+            }
+
+            card.addEventListener("click", () => {
+                window.location.href = `/book/${book.id}/`;
             });
-            card.appendChild(favBtn);
-        }
 
-        card.addEventListener("click", () => {
-            window.location.href = `/book/${book.id}/`;
+            bookList.appendChild(card);
         });
 
-        bookList.appendChild(card);
-    });
+        updateFavoriteButtons();
+    }
 
-    updateFavoriteButtons();
-}
 
-// ===============================
-// 🔹 Загрузка каталога
-// ===============================
-fetch("/api/books/")
-    .then(res => res.json())
-    .then(data => {
-        const books = Array.isArray(data) ? data : data.results;
-        if (!books?.length) {
-            document.getElementById("book-list").innerHTML = "<p>Книг пока нет.</p>";
-            return;
-        }
-        console.log("📚 Рендер каталога пошёл, найдено книг:", books.length);
-        renderBooks(books);
-    })
-    .catch(err => {
-        console.error("Ошибка загрузки каталога:", err);
-        document.getElementById("book-list").innerHTML = "<p>Ошибка загрузки каталога.</p>";
-    });
+    // ===============================
+    // 🔹 Загрузка каталога
+    // ===============================
+    fetch("/api/books/")
+        .then(res => res.json())
+        .then(data => {
+            const books = Array.isArray(data) ? data : data.results;
+            if (!books?.length) {
+                document.getElementById("book-list").innerHTML = "<p>Книг пока нет.</p>";
+                return;
+            }
+            console.log("📚 Рендер каталога пошёл, найдено книг:", books.length);
+            renderBooks(books);
+        })
+        .catch(err => {
+            console.error("Ошибка загрузки каталога:", err);
+            document.getElementById("book-list").innerHTML = "<p>Ошибка загрузки каталога.</p>";
+        });
