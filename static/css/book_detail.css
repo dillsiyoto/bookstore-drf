@@ -1,0 +1,103 @@
+/* ==========================================================
+   BOOK_DETAIL.CSS — стили для страницы одной книги
+   ========================================================== */
+
+/* Контейнер всей страницы книги */
+.book-detail {
+    max-width: 900px;
+    margin: 40px auto;
+    display: flex;
+    gap: 40px;
+    background: #FCFAEE;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Обложка книги */
+.book-detail img {
+    width: 300px;
+    height: 400px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Информация о книге справа */
+.book-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.book-info h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.book-info p {
+    color: #555;
+    margin: 6px 0;
+    line-height: 1.4;
+}
+
+/* Цена */
+.book-info .price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #A5B68D;
+    margin: 10px 0;
+}
+
+/* Кнопки “в корзину” и “в избранное” */
+.book-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.book-actions button {
+    background: #A5B68D;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.book-actions button:hover {
+    background: #DA8359;
+    transform: scale(1.05);
+}
+
+/* Сообщение “добавлено” */
+.added-message {
+    margin-top: 8px;
+    color: #3b7d3b;
+    font-weight: bold;
+}
+
+/* Адаптив (на телефонах) */
+@media (max-width: 768px) {
+    .book-detail {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .book-detail img {
+        width: 250px;
+        height: 350px;
+    }
+
+    .book-info {
+        align-items: center;
+    }
+}

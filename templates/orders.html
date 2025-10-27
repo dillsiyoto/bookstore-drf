@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Мои заказы{% endblock %}
+
+{% block content %}
+<div class="orders-container">
+    <h2>История заказов</h2>
+    <div id="orders-list"></div>
+</div>
+
+<script src="{% static 'js/orders.js' %}"></script>
+{% endblock %}

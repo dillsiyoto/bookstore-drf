@@ -1,0 +1,124 @@
+/* ==========================================================
+   ORDERS.CSS — стили для страницы "История заказов"
+   ========================================================== */
+
+.orders-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.orders-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Каждый заказ */
+.order-block {
+    background: #f8f8f8;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.order-block h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.order-block p {
+    margin: 4px 0;
+    color: #444;
+}
+
+/* Контейнер списка книг */
+.order-items {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Каждая книга внутри заказа */
+.order-items .book-card {
+    display: flex;
+    flex-direction: row;        /* ключевой момент — в строку */
+    align-items: center;
+    justify-content: flex-start;
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 18px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+    min-height: 140px;
+}
+
+.order-items .book-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+/* Обложка */
+.order-items .book-card img {
+    width: 100px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+/* Информация о книге (текст справа от обложки) */
+.order-items .book-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;   /* текст слева, а не по центру */
+    justify-content: center;
+    text-align: left;
+}
+
+.order-items .book-info p {
+    margin: 5px 0;
+    color: #333;
+    line-height: 1.3;
+}
+
+.order-items .book-info strong {
+    font-size: 16px;
+}
+
+.order-items .book-info .price {
+    color: #DA8359;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.order-items .book-info .status {
+    color: #3b7d3b;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+    .order-items .book-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .order-items .book-card img {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .order-items .book-info {
+        align-items: center;
+    }
+}

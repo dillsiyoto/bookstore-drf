@@ -1,0 +1,55 @@
+/* ==========================================================
+   AUTH.CSS — стили для входа и регистрации
+   ========================================================== */
+
+.auth-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #FCFAEE; /* светлый фон блока */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.auth-container h2 {
+    margin-bottom: 1rem;
+    color: #DA8359; /* акцентный заголовок */
+}
+
+.auth-container input {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 1px solid #A5B68D;
+    border-radius: 5px;
+    background: white;
+    font-size: 1rem;
+}
+
+.auth-container button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #DA8359; /* акцентная кнопка */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.auth-container button:hover {
+    background: #A5B68D;
+}
+
+.auth-container a {
+    color: #A5B68D;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}

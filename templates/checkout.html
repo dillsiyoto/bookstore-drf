@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<div class="checkout-container">
+    <h2>Оформление заказа</h2>
+
+    <form id="checkout-form" class="checkout-form">
+        <label>Адрес доставки:</label>
+        <input type="text" id="address" required placeholder="Введите адрес">
+
+        <label>Номер телефона:</label>
+        <input type="tel" id="phone" required placeholder="+7 (___) ___-__-__">
+
+        <label>Номер карты:</label>
+        <input type="text" id="card-number" required maxlength="16" placeholder="16 цифр">
+
+        <label>Срок действия (MM/YY):</label>
+        <input type="text" id="card-expiry" required maxlength="5" placeholder="MM/YY">
+
+        <label>CVV:</label>
+        <input type="text" id="card-cvv" required maxlength="3" placeholder="3 цифры">
+
+        <button type="submit" class="checkout-btn">Подтвердить заказ</button>
+    </form>
+</div>
+
+<script src="{% static 'js/checkout.js' %}"></script>
+{% endblock %}

@@ -58,4 +58,17 @@ document.addEventListener("DOMContentLoaded", () => {
         cart = cart.filter(b => b.id !== id);
         localStorage.setItem("cart", JSON.stringify(cart));
     }
+
+    // ✅ Один обработчик кнопки "Оформить заказ"
+    const checkoutBtn = document.getElementById("checkout-btn");
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener("click", () => {
+            const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+            if (cart.length === 0) {
+                alert("Корзина пуста!");
+                return;
+            }
+            window.location.href = "/checkout/";
+        });
+    }
 });

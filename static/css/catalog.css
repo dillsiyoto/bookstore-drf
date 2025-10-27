@@ -1,0 +1,205 @@
+/* ==========================================================
+   CATALOG.CSS — страница каталога книг
+   ========================================================== */
+
+/* Общий контейнер страницы */
+.catalog-page {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Левая панель фильтров */
+.filters {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    height: fit-content;
+}
+
+.filters h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.filters label {
+    display: block;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+.filters input,
+.filters select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.filters button {
+    width: 100%;
+    margin-top: 16px;
+    padding: 10px;
+    background: #A5B68D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.filters button:hover {
+    background: #DA8359;
+    transform: scale(1.03);
+}
+
+/* Секция каталога (справа) */
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    justify-items: center;
+}
+
+/* Карточка книги */
+/* Карточка книги */
+.book-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 220px;          /* фиксированная ширина */
+    height: 360px;         /* фиксированная высота */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;      /* чтобы ничего не вылезало */
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.book-card img {
+    width: 140px;
+    height: 190px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Текстовое содержимое */
+.book-card h3 {
+    font-size: 15px;
+    margin: 4px 0;
+    color: #333;
+    line-height: 1.2;
+    height: 38px;          /* ограничиваем высоту */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.book-card p {
+    margin: 2px 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.2;
+    height: 18px;          /* чтобы выровнять автора */
+    overflow: hidden;
+}
+
+.book-card .price {
+    color: #DA8359;
+    font-weight: bold;
+    margin-top: auto;      /* чтобы цена и кнопка были внизу */
+}
+
+/* Кнопки в карточке */
+.book-card button {
+    background: #A5B68D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 6px;
+}
+
+.book-card button:hover {
+    background: #DA8359;
+}
+
+
+/* Админ-панель (нижняя часть) */
+.admin-panel {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.admin-panel h3 {
+    color: #333;
+    margin-top: 20px;
+}
+
+.admin-panel form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.admin-panel input,
+.admin-panel select,
+.admin-panel textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.admin-panel button {
+    background: #A5B68D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.admin-panel button:hover {
+    background: #DA8359;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+    .catalog-page {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        order: 2;
+    }
+
+    .catalog {
+        order: 1;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}

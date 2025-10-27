@@ -1,0 +1,104 @@
+/* ==========================================================
+   CHECKOUT.CSS — оформление заказа
+   ========================================================== */
+
+.checkout-container {
+    max-width: 700px;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.checkout-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Форма оформления заказа */
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.checkout-form label {
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 4px;
+}
+
+.checkout-form input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    width: 100%;
+    transition: border-color 0.2s;
+}
+
+.checkout-form input:focus {
+    border-color: #A5B68D;
+    outline: none;
+}
+
+/* Блок с полями карты */
+.payment-section {
+    margin-top: 20px;
+    padding: 15px;
+    background: #FCFAEE;
+    border-radius: 10px;
+}
+
+.payment-section h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Ошибки ввода */
+.error-message {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: -8px;
+}
+
+/* Кнопка оформления */
+.place-order-btn {
+    background: #A5B68D;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 15px;
+}
+
+.place-order-btn:hover {
+    background: #DA8359;
+    transform: scale(1.05);
+}
+
+/* Сообщение об успешном заказе */
+.success-message {
+    text-align: center;
+    color: #3b7d3b;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+    .checkout-container {
+        padding: 20px;
+    }
+
+    .place-order-btn {
+        width: 100%;
+    }
+}

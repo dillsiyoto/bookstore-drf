@@ -1,0 +1,135 @@
+/* ==========================================================
+   CART.CSS — стили для страницы корзины
+   ========================================================== */
+
+.favorites-container, .cart-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #FCFAEE;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.favorites-container h2, .cart-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Сетка карточек товаров */
+#cart-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    justify-items: center;
+}
+
+/* Карточка товара */
+.cart-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cart-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.cart-card img {
+    width: 150px;
+    height: 210px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.cart-card h3 {
+    font-size: 16px;
+    color: #333;
+    margin: 8px 0;
+}
+
+.cart-card p {
+    margin: 4px 0;
+    color: #555;
+}
+
+/* Цена */
+.cart-card .price {
+    color: #DA8359;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Кнопка удаления */
+.remove-cart-btn {
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.remove-cart-btn:hover {
+    background: #c9302c;
+}
+
+/* Блок "Итого" */
+.cart-total {
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Кнопка "Оформить заказ" */
+.checkout-btn {
+    display: block;
+    margin: 25px auto 0;
+    background: #A5B68D;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.checkout-btn:hover {
+    background: #DA8359;
+    transform: scale(1.05);
+}
+
+/* Когда корзина пуста */
+.no-favorites {
+    text-align: center;
+    color: #777;
+    font-size: 18px;
+    margin-top: 40px;
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+    #cart-list {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .cart-card img {
+        width: 120px;
+        height: 160px;
+    }
+
+    .checkout-btn {
+        width: 100%;
+    }
+}
